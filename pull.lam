@@ -1,0 +1,68 @@
+#temperature in reduced units
+variable temp equal 1.0
+
+#Set the maximal force
+variable maxforce equal 200
+
+#set up basic simulation stuff
+dimension 2
+units		lj
+atom_style	molecular
+atom_modify     sort 1000 2.0
+comm_modify     cutoff 2.0
+boundary        p p p
+
+#neighbor settings
+neighbor 2.0 bin
+neigh_modify every 1 delay 0 check yes
+
+#read input configuration
+read_data poly1.input
+
+#all particles has mass 1
+mass   *        1
+
+#Type 1 is internal bead, 2 is fixed, and 3 is free
+group mobile type 1 3
+group fixed  type 2
+group force  type 3
+
+#no pair interactions
+pair_style         none
+
+#FENE type bond
+bond_style fene
+bond_coeff 1 50.0 1.5 0.0 0.0
+special_bonds fene
+
+# specify timestep
+variable tstep equal 0.01
+timestep	${tstep}
+thermo    100
+
+fix integrator mobile nve
+fix dynamics   mobile langevin ${temp} ${temp} 10.0 252111
+fix run2d      all enforce2d
+
+variable eqrun      equal 50000
+variable samplerun  equal 10000000
+
+#first equilibrate 
+run ${eqrun}
+
+reset_timestep 0
+
+#Add an external force to the end particle that grows linear with time
+variable extforce equal ${maxforce}*step/${samplerun}
+fix externforce force  addforce v_extforce 0 0
+
+#sample average distance from one end to the other along the x axis
+variable dist equal (x[40]-x[1])
+fix avg all ave/time 1 500000 500000 v_dist v_extforce file dist_vs_force ave one
+
+thermo 500000
+thermo_style custom step f_avg[1] v_extforce 
+
+# Add by Jack 
+dump	1 all custom 10000 lammps.out id x y
+run ${samplerun}
