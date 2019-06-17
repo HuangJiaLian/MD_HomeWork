@@ -60,8 +60,8 @@
    │   ├── process_v3.gif
    │   ├── result.png
    │   └── result.svg
-   ├── report.md (结果展示文档)
-   └── Report.pdf
+   ├── README.md (结果展示文档)
+   └── report.pdf
    ```
 
    
