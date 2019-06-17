@@ -18,7 +18,10 @@
 
 `result.svg`
 
-![](./pic/result.svg)
+<p align="center">
+<img src='./pic/result.svg' width='60%'>
+</p>
+
 
 <div style="page-break-after: always;"></div>
 
