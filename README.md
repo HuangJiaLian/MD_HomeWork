@@ -13,19 +13,36 @@
 
 
 <div style="page-break-after: always;"></div>
-
 ## 3. 统计结果
 
 `result.svg`
 
 <p align="center">
 <img src='./pic/result.svg' width='60%'>
+</p>
+### 利用公式计算回旋半径
+回旋半径:
+
+$$
+R^2_g = \frac{1}{n}\sum_{i=0}^n(r_i -r_c)^2 \tag{1}
+$$
+其中质心到原点的距离:
+$$
+r_c = \frac{\sum{_i^nm_i\vec{r_i}}}{\sum{_{i=0}^nm_i}} = \frac{\sum{_{i=0}^n\vec{r_i}}}{n} \tag{2}
+$$
+这个例子是二维的,因此:
+
+$$
+r_i = \sqrt{x_i^2+y_i^2} \tag{3}
+$$
+
+
+<p>
 <img src='./pic/rg.svg' width='60%'>
 </p>
 
 
 <div style="page-break-after: always;"></div>
-
 ## 附录: 
 1. 截图
 
