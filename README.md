@@ -24,16 +24,16 @@
 回旋半径:
 
 $$
-R^2_g = \frac{1}{n}\sum_{i=0}^n(r_i -r_c)^2 \tag{1}
+R^2_g = \frac{1}{n}\sum_{i=0}^n(r_i -r_c)^2 
 $$
 其中质心到原点的距离:
 $$
-r_c = \frac{\sum{_i^nm_i\vec{r_i}}}{\sum{_{i=0}^nm_i}} = \frac{\sum{_{i=0}^n\vec{r_i}}}{n} \tag{2}
+r_c = \frac{\sum{_i^nm_i\vec{r_i}}}{\sum{_{i=0}^nm_i}} = \frac{\sum{_{i=0}^n\vec{r_i}}}{n} 
 $$
 这个例子是二维的,因此:
 
 $$
-r_i = \sqrt{x_i^2+y_i^2} \tag{3}
+r_i = \sqrt{x_i^2+y_i^2}
 $$
 
 
