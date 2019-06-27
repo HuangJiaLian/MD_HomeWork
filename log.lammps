@@ -11,6 +11,7 @@ units		lj
 atom_style	molecular
 atom_modify     sort 1000 2.0
 comm_modify     cutoff 2.0
+# 周期边界
 boundary        p p p
 
 #neighbor settings
@@ -58,7 +59,7 @@ special_bonds fene
 variable tstep equal 0.01
 timestep	${tstep}
 timestep	0.01
-thermo    100
+thermo    100 #每一百
 
 fix integrator mobile nve
 fix dynamics   mobile langevin ${temp} ${temp} 10.0 252111
@@ -575,21 +576,21 @@ Step Temp E_pair E_mol TotEng Press
    49800   0.86928335            0   0.94321711    1.7907684 -0.00071673625 
    49900   0.89901992            0   0.89847769    1.7750221 -0.00021905665 
    50000   0.90433025            0   0.90080555    1.7825275 -0.0002460977 
-Loop time of 0.170697 on 1 procs for 50000 steps with 40 atoms
+Loop time of 0.171582 on 1 procs for 50000 steps with 40 atoms
 
-Performance: 253080540.867 tau/day, 292917.293 timesteps/s
-98.6% CPU use with 1 MPI tasks x no OpenMP threads
+Performance: 251774806.948 tau/day, 291406.027 timesteps/s
+98.0% CPU use with 1 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
 Pair    | 0          | 0          | 0          |   0.0 |  0.00
-Bond    | 0.027026   | 0.027026   | 0.027026   |   0.0 | 15.83
-Neigh   | 0.00049059 | 0.00049059 | 0.00049059 |   0.0 |  0.29
-Comm    | 0.012035   | 0.012035   | 0.012035   |   0.0 |  7.05
-Output  | 0.0037824  | 0.0037824  | 0.0037824  |   0.0 |  2.22
-Modify  | 0.11       | 0.11       | 0.11       |   0.0 | 64.44
-Other   |            | 0.01736    |            |       | 10.17
+Bond    | 0.026627   | 0.026627   | 0.026627   |   0.0 | 15.52
+Neigh   | 0.00053711 | 0.00053711 | 0.00053711 |   0.0 |  0.31
+Comm    | 0.011789   | 0.011789   | 0.011789   |   0.0 |  6.87
+Output  | 0.0037994  | 0.0037994  | 0.0037994  |   0.0 |  2.21
+Modify  | 0.11138    | 0.11138    | 0.11138    |   0.0 | 64.92
+Other   |            | 0.01745    |            |       | 10.17
 
 Nlocal:    40 ave 40 max 40 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -620,7 +621,8 @@ thermo 500000
 thermo_style custom step f_avg[1] v_extforce
 
 # Add by Jack
-dump	1 all custom 10000 lammps.out id x y
+dump 1 all custom 10000 lammps.out id x y
+# dump gy all custom 10000 lammps.out id x y
 run ${samplerun}
 run 10000000
 Per MPI rank memory allocation (min/avg/max) = 6.794 | 6.794 | 6.794 Mbytes
@@ -646,21 +648,21 @@ Step f_avg[1] v_extforce
  9000000    47.000796          180 
  9500000    47.553362          190 
 10000000    48.052982          200 
-Loop time of 55.4491 on 1 procs for 10000000 steps with 40 atoms
+Loop time of 58.2287 on 1 procs for 10000000 steps with 40 atoms
 
-Performance: 155818470.917 tau/day, 180345.452 timesteps/s
-99.8% CPU use with 1 MPI tasks x no OpenMP threads
+Performance: 148380561.163 tau/day, 171736.761 timesteps/s
+99.6% CPU use with 1 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
 Pair    | 0          | 0          | 0          |   0.0 |  0.00
-Bond    | 5.0063     | 5.0063     | 5.0063     |   0.0 |  9.03
-Neigh   | 0.040252   | 0.040252   | 0.040252   |   0.0 |  0.07
-Comm    | 1.0658     | 1.0658     | 1.0658     |   0.0 |  1.92
-Output  | 0.080964   | 0.080964   | 0.080964   |   0.0 |  0.15
-Modify  | 46.22      | 46.22      | 46.22      |   0.0 | 83.36
-Other   |            | 3.036      |            |       |  5.47
+Bond    | 5.2983     | 5.2983     | 5.2983     |   0.0 |  9.10
+Neigh   | 0.049211   | 0.049211   | 0.049211   |   0.0 |  0.08
+Comm    | 1.1866     | 1.1866     | 1.1866     |   0.0 |  2.04
+Output  | 0.099686   | 0.099686   | 0.099686   |   0.0 |  0.17
+Modify  | 48.838     | 48.838     | 48.838     |   0.0 | 83.87
+Other   |            | 2.757      |            |       |  4.73
 
 Nlocal:    40 ave 40 max 40 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -674,4 +676,4 @@ Ave neighs/atom = 0
 Ave special neighs/atom = 1.95
 Neighbor list builds = 49364
 Dangerous builds = 0
-Total wall time: 0:00:55
+Total wall time: 0:00:58

@@ -1,9 +1,9 @@
 # 使用LAMMPS模拟高分子链被外力拉扯
 
 ## 1. 简介
-生成一个有40个例子,39个键的高分子链。第1个粒子的位置固定，外力施加在第40个粒子上。
+在二维空间生成一个有40个例子,39个键的高分子链。第1个粒子的位置固定，外力施加在第40个粒子上。
 
-外力随时间步长线性增加。统计第一个粒子和最后一个粒子水平距离的变化情况。
+外力随时间步长线性增加。统计第一个粒子和最后一个粒子水平距离的变化和回旋半径的变化。
 
 ## 2. 动态演化过程
 使用Ovito展示时间演化过程: `process_v3.gif`
@@ -20,6 +20,7 @@
 
 <p align="center">
 <img src='./pic/result.svg' width='60%'>
+<img src='./pic/rg.svg' width='60%'>
 </p>
 
 
@@ -43,7 +44,7 @@
    ├── dist_vs_force,v
    ├── lammps.out (输出文件，记录每个例子的坐标变化)
    ├── log.lammps
-   ├── PlotData.ipynb 
+   ├── PlotData.ipynb(Jupyter Notebook文件)
    ├── PlotData.py (作统计图的Python程序)
    ├── poly1.input (例子的初始位置)
    ├── pull.lam (in文件)
@@ -58,10 +59,14 @@
    │   ├── process_v1.gif
    │   ├── process_v2.gif
    │   ├── process_v3.gif
+   │   ├── rg.png
+   │   ├── rg.svg
    │   ├── result.png
    │   └── result.svg
    ├── README.md (结果展示文档)
-   └── report.pdf
+└── report.pdf
    ```
-
    
+   
+
+参考:[[1](http://www.zqex.dk/index.php/teaching/lammps-demo)] http://www.zqex.dk/index.php/teaching/lammps-demo

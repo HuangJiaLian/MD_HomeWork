@@ -10,6 +10,7 @@ units		lj
 atom_style	molecular
 atom_modify     sort 1000 2.0
 comm_modify     cutoff 2.0
+# 周期边界
 boundary        p p p
 
 #neighbor settings
@@ -38,7 +39,7 @@ special_bonds fene
 # specify timestep
 variable tstep equal 0.01
 timestep	${tstep}
-thermo    100
+thermo    100 #每一百
 
 fix integrator mobile nve
 fix dynamics   mobile langevin ${temp} ${temp} 10.0 252111
@@ -64,5 +65,6 @@ thermo 500000
 thermo_style custom step f_avg[1] v_extforce 
 
 # Add by Jack 
-dump	1 all custom 10000 lammps.out id x y
+dump 1 all custom 10000 lammps.out id x y
+# dump gy all custom 10000 lammps.out id x y
 run ${samplerun}
